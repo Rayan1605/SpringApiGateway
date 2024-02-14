@@ -20,8 +20,6 @@ import reactor.core.publisher.Mono;
 
 
 public class AuthorizationFilter extends AbstractGatewayFilterFactory<AuthorizationFilter.Config> {
-    @Autowired
-    private Environment env;
 
     @Override
     public GatewayFilter apply(Config config) {
