@@ -34,7 +34,8 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
             return chain.filter(exchange);
         };
     }
-
+//creates an error message to send back . Here's what it does:
+//Mono<Void> indicates a completion signal without a specific result. It's used to represent that an asynchronous operation has completed
     private Mono<Void> OneError(ServerWebExchange exchange, String s, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);
