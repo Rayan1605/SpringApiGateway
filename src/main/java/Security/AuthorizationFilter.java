@@ -1,7 +1,11 @@
 package Security;
 
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -13,6 +17,8 @@ import reactor.core.publisher.Mono;
 // JWT token has been signed with the correct token secret
 @Component
 public class AuthorizationFilter extends AbstractGatewayFilterFactory<AuthorizationFilter.Config> {
+    @Autowired
+    private Environment env;
 
     @Override
     public GatewayFilter apply(Config config) {
@@ -40,5 +46,13 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 
     public static class Config {
 
+    }
+
+    private boolean isJwtValid(String jwt) {
+        boolean isValid=true;
+
+        env.getProperty("token.secret");
+
+        JwtParser jwtParser = Jwts.parser().setSigningKey()
     }
 }
