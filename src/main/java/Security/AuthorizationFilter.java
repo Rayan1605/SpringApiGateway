@@ -20,7 +20,6 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
             if (request.getHeaders().containsKey("Authorization")){
                 return OneError(exchange, " No Authorization header", HttpStatus.UNAUTHORIZED);
             }
-
             return chain.filter(exchange);
         };
     }
