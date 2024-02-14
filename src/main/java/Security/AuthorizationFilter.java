@@ -24,13 +24,14 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
     @Override
     public GatewayFilter apply(Config config) {
 
+  //exchange is HTTP request and response and chain is the filer
         return (exchange, chain) -> {
 
            ServerHttpRequest request = exchange.getRequest();
             if (request.getHeaders().containsKey("Authorization")){
                 return OneError(exchange, " No Authorization header", HttpStatus.UNAUTHORIZED);
             }
-
+// if the filter finds the header it's looking for, it doesn't need to do anything fancy—it just lets the request proceed as normal.
             return chain.filter(exchange);
         };
     }
