@@ -15,7 +15,10 @@ import reactor.core.publisher.Mono;
 
 // Using the filter to check if the request to a web service endpoint does contain a JWT token and if the provided
 // JWT token has been signed with the correct token secret
-@Component
+@Component // AbstractGatewayFilterFactory.
+// This means it will execute for every HTTP request passing through your gateway.
+
+
 public class AuthorizationFilter extends AbstractGatewayFilterFactory<AuthorizationFilter.Config> {
     @Autowired
     private Environment env;
