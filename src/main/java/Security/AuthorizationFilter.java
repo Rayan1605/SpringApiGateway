@@ -30,9 +30,6 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
                 return OneError(exchange, " No Authorization header", HttpStatus.UNAUTHORIZED);
             }
 
-         String header  = request.getHeaders().get("Authorization").get(0);
-         String jwr = header.replace("Bearer","");
-
             return chain.filter(exchange);
         };
     }
@@ -48,11 +45,5 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 
     }
 
-    private boolean isJwtValid(String jwt) {
-        boolean isValid=true;
 
-        env.getProperty("token.secret");
-
-        JwtParser jwtParser = Jwts.parser().setSigningKey()
-    }
 }
